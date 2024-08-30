@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:pharmacy/constants/app_images.dart';
 import 'package:pharmacy/constants/custom_textfield.dart';
 import 'package:pharmacy/constants/reusable_text.dart';
+import 'package:pharmacy/pages/home_page.dart';
 import 'package:pharmacy/pages/register.dart';
+import 'package:pharmacy/services/auth_service.dart';
 
 class SignInPage extends StatefulWidget {
   const SignInPage({super.key});
@@ -12,6 +14,8 @@ class SignInPage extends StatefulWidget {
 }
 
 class _SignInPageState extends State<SignInPage> {
+  AuthService _authService = AuthService();
+
   final GlobalKey _formKey = GlobalKey<FormState>();
   String _email = "";
   String _password = "";
@@ -25,6 +29,7 @@ class _SignInPageState extends State<SignInPage> {
       ),
       body: SafeArea(
         child: SingleChildScrollView(
+          padding: const EdgeInsets.all(20),
           child: Form(
             key: _formKey,
             child: Column(
@@ -35,12 +40,11 @@ class _SignInPageState extends State<SignInPage> {
                     borderRadius: BorderRadius.circular(20),
                     child: Image.asset(
                       AppImages.pills1,
-                      height: 80,
-                      width: 80,
+                      height: 200,
+                      width: 200,
                     ),
                   ),
                 ),
-                const SizedBox(height: 20),
                 CustomTextField(
                   hintText: "Email",
                   prefixIcon: Icons.email_outlined,
@@ -55,7 +59,7 @@ class _SignInPageState extends State<SignInPage> {
                     return null;
                   },
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 30),
                 CustomTextField(
                   hintText: "Password",
                   prefixIcon: Icons.lock_outline,
@@ -70,9 +74,11 @@ class _SignInPageState extends State<SignInPage> {
                     return null;
                   },
                 ),
+                const SizedBox(height: 30),
                 const Divider(
-                  thickness: 20,
+                  thickness: 8,
                 ),
+                const SizedBox(height: 30),
                 Center(
                   child: GestureDetector(
                     onTap: () {
@@ -87,11 +93,19 @@ class _SignInPageState extends State<SignInPage> {
                     ),
                   ),
                 ),
+                const SizedBox(height: 30),
                 SizedBox(
                   width: double.infinity,
                   height: 50,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      _authService.signInUser(
+                          _email.trim(), _password.trim(), context);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const HomePage()));
+                    },
                     child: const Text("Login"),
                   ),
                 ),

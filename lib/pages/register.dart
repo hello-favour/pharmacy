@@ -1,11 +1,9 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter/widgets.dart';
 import 'package:pharmacy/constants/app_images.dart';
 import 'package:pharmacy/constants/custom_textfield.dart';
 import 'package:pharmacy/constants/reusable_text.dart';
 import 'package:pharmacy/pages/signin.dart';
+import 'package:pharmacy/services/auth_service.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key});
@@ -15,6 +13,8 @@ class RegisterPage extends StatefulWidget {
 }
 
 class _SignInState extends State<RegisterPage> {
+  AuthService _authService = AuthService();
+
   final GlobalKey _formKey = GlobalKey<FormState>();
   String _email = "";
   String _password = "";
@@ -28,6 +28,7 @@ class _SignInState extends State<RegisterPage> {
       ),
       body: SafeArea(
         child: SingleChildScrollView(
+          padding: const EdgeInsets.all(20),
           child: Form(
             key: _formKey,
             child: Column(
@@ -38,12 +39,11 @@ class _SignInState extends State<RegisterPage> {
                     borderRadius: BorderRadius.circular(20),
                     child: Image.asset(
                       AppImages.pills1,
-                      height: 80,
-                      width: 80,
+                      height: 200,
+                      width: 200,
                     ),
                   ),
                 ),
-                const SizedBox(height: 20),
                 CustomTextField(
                   hintText: "Email",
                   prefixIcon: Icons.email_outlined,
@@ -58,7 +58,7 @@ class _SignInState extends State<RegisterPage> {
                     return null;
                   },
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 30),
                 CustomTextField(
                   hintText: "Password",
                   prefixIcon: Icons.lock_outline,
@@ -73,7 +73,7 @@ class _SignInState extends State<RegisterPage> {
                     return null;
                   },
                 ),
-                const SizedBox(height: 20),
+                const SizedBox(height: 30),
                 CustomTextField(
                   hintText: "COnfirmed Password",
                   prefixIcon: Icons.lock_outline,
@@ -88,9 +88,11 @@ class _SignInState extends State<RegisterPage> {
                     return null;
                   },
                 ),
+                const SizedBox(height: 30),
                 const Divider(
-                  thickness: 20,
+                  thickness: 8,
                 ),
+                const SizedBox(height: 30),
                 Center(
                   child: GestureDetector(
                     onTap: () {
@@ -105,11 +107,19 @@ class _SignInState extends State<RegisterPage> {
                     ),
                   ),
                 ),
+                const SizedBox(height: 30),
                 SizedBox(
                   width: double.infinity,
                   height: 50,
                   child: ElevatedButton(
-                    onPressed: () {},
+                    onPressed: () {
+                      _authService.registerUser(
+                          _email.trim(), _password, context);
+                      Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SignInPage()));
+                    },
                     child: const Text("Register"),
                   ),
                 ),
