@@ -5,6 +5,12 @@ import 'package:pharmacy/services/handle_auth_error.dart';
 class AuthService {
   AuthService._();
 
+  static final AuthService _instance = AuthService._();
+
+  factory AuthService() {
+    return _instance;
+  }
+
   FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   Stream<User?> get authStateChange => _firebaseAuth.authStateChanges();
