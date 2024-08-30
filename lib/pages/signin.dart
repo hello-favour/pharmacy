@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pharmacy/constants/app_images.dart';
 import 'package:pharmacy/constants/custom_textfield.dart';
 import 'package:pharmacy/constants/reusable_text.dart';
 import 'package:pharmacy/pages/register.dart';
@@ -33,7 +34,7 @@ class _SignInPageState extends State<SignInPage> {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(20),
                     child: Image.asset(
-                      "",
+                      AppImages.pills1,
                       height: 80,
                       width: 80,
                     ),

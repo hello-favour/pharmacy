@@ -2,7 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
+import 'package:pharmacy/constants/app_images.dart';
 import 'package:pharmacy/constants/custom_textfield.dart';
+import 'package:pharmacy/constants/reusable_text.dart';
 import 'package:pharmacy/pages/signin.dart';
 
 class RegisterPage extends StatefulWidget {
@@ -35,7 +37,7 @@ class _SignInState extends State<RegisterPage> {
                   child: ClipRRect(
                     borderRadius: BorderRadius.circular(20),
                     child: Image.asset(
-                      "",
+                      AppImages.pills1,
                       height: 80,
                       width: 80,
                     ),
@@ -98,13 +100,8 @@ class _SignInState extends State<RegisterPage> {
                               builder: (context) => const SignInPage()),
                           (route) => false);
                     },
-                    child: const Text(
-                      "Already have an account? SignIn",
-                      style: TextStyle(
-                        color: Colors.black,
-                        fontSize: 25,
-                        fontWeight: FontWeight.bold,
-                      ),
+                    child: const ReusableText(
+                      text: "Already have an account? SignIn",
                     ),
                   ),
                 ),
