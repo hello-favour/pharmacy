@@ -9,12 +9,59 @@ class HomePage extends ConsumerStatefulWidget {
 }
 
 class _HomePageState extends ConsumerState<HomePage> {
+  int selectedIndex = 0;
+  void _onItemTap(int index) {
+    setState(() {
+      selectedIndex == index;
+    });
+  }
+
+  List<Widget> pages = [];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Center(
-        child: Text("yoooo"),
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Colors.white,
+        selectedItemColor: Colors.red,
+        currentIndex: selectedIndex,
+        onTap: _onItemTap,
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.home,
+              color: Colors.red,
+              size: 30,
+            ),
+            label: "Home",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.favorite_outline,
+              color: Colors.red,
+              size: 30,
+            ),
+            label: "Favorite",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.shopping_bag_outlined,
+              color: Colors.red,
+              size: 30,
+            ),
+            label: "Cart",
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(
+              Icons.person,
+              color: Colors.red,
+              size: 30,
+            ),
+            label: "Profile",
+          )
+        ],
       ),
+      body: pages[selectedIndex],
     );
   }
 }

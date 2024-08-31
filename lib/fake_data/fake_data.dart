@@ -1,0 +1,3 @@
+class FakeData {
+  // List<CategoryModel>
+}
