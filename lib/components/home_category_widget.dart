@@ -1,14 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:pharmacy/constants/reusable_text.dart';
 import 'package:pharmacy/fake_data/fake_data.dart';
 
-class CategoryWidget extends StatelessWidget {
-  const CategoryWidget({super.key});
+class HomeCategoryWidget extends StatelessWidget {
+  const HomeCategoryWidget({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 150,
       child: ListView.builder(
+        padding: EdgeInsets.zero,
         shrinkWrap: true,
         physics: const ClampingScrollPhysics(),
         itemCount: FakeData().categories.length,
@@ -27,13 +29,11 @@ class CategoryWidget extends StatelessWidget {
                     width: 120,
                   ),
                 ),
-                Text(
-                  fakeData.name.toString(),
-                  style: const TextStyle(
-                    color: Colors.black,
-                    fontSize: 15,
-                    fontWeight: FontWeight.w400,
-                  ),
+                ReusableText(
+                  text: fakeData.name.toString(),
+                  fontSize: 15,
+                  fontWeight: FontWeight.w400,
+                  color: Colors.black,
                 ),
               ],
             ),

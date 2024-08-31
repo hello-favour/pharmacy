@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pharmacy/components/home_category_widget.dart';
+import 'package:pharmacy/components/home_product_widget.dart';
+import 'package:pharmacy/constants/reusable_text.dart';
 
 class MainPage extends ConsumerWidget {
   const MainPage({super.key});
@@ -10,13 +12,14 @@ class MainPage extends ConsumerWidget {
     final screenHeight = MediaQuery.of(context).size.height;
     return Scaffold(
       body: SingleChildScrollView(
+        padding: EdgeInsets.all(20),
         child: Column(
           children: [
             const SizedBox(height: 50),
             Card(
-              elevation: 0,
+              elevation: 1,
               child: SizedBox(
-                height: screenHeight * 0.99,
+                height: 60,
                 child: const TextField(
                   decoration: InputDecoration(
                     border: InputBorder.none,
@@ -42,6 +45,24 @@ class MainPage extends ConsumerWidget {
             ),
             const SizedBox(height: 16),
             const HomeCategoryWidget(),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                ReusableText(
+                  text: "Products",
+                  fontSize: 25,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.deepPurple,
+                ),
+                ReusableText(
+                  text: "See All",
+                  fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                  color: Colors.deepPurple,
+                ),
+              ],
+            ),
+            ProductWidget(),
           ],
         ),
       ),

@@ -14,14 +14,14 @@ class FakeData {
 
   List<ProductModel> product = [
     ProductModel(
-      productImage: AppImages.pills1,
+      productImage: AppImages.pills6,
       productName: "ARV tablets",
       productPrice: 1.99,
       productDescription:
           "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac ultricies risus, eget maximus felis. Proin tincidunt iaculis neque non sagittis. Sed ullamcorper.",
     ),
     ProductModel(
-      productImage: AppImages.pills2,
+      productImage: AppImages.pills4,
       productName: "Vitamin D3 Capsules",
       productPrice: 3.49,
       productDescription:
@@ -35,7 +35,7 @@ class FakeData {
           "Relieves coughs and soothes throat irritation. This syrup contains natural honey and herbal extracts for gentle, effective relief from coughs and sore throats.",
     ),
     ProductModel(
-      productImage: AppImages.pills4,
+      productImage: AppImages.pills2,
       productName: "Antiseptic Cream",
       productPrice: 2.79,
       productDescription:
@@ -49,7 +49,7 @@ class FakeData {
           "Effective pain relief for headaches, migraines, muscle aches. Fast-acting formula delivers quick, targeted relief to help you feel better fast.",
     ),
     ProductModel(
-      productImage: AppImages.pills6,
+      productImage: AppImages.pills1,
       productName: "Anti-Fungal Ointment",
       productPrice: 6.49,
       productDescription:

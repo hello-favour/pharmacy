@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:pharmacy/pages/cart_page.dart';
+import 'package:pharmacy/pages/favorite_page.dart';
+import 'package:pharmacy/pages/main_page.dart';
+import 'package:pharmacy/pages/profile_page.dart';
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
@@ -10,27 +14,33 @@ class HomePage extends ConsumerStatefulWidget {
 
 class _HomePageState extends ConsumerState<HomePage> {
   int selectedIndex = 0;
+
   void _onItemTap(int index) {
     setState(() {
-      selectedIndex == index;
+      selectedIndex = index;
     });
   }
 
-  List<Widget> pages = [];
+  List<Widget> pages = [
+    const MainPage(),
+    const FavoritePage(),
+    const CartPage(),
+    const ProfilePage(),
+  ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
         backgroundColor: Colors.white,
-        selectedItemColor: Colors.red,
+        selectedItemColor: Colors.purple,
         currentIndex: selectedIndex,
         onTap: _onItemTap,
         items: const [
           BottomNavigationBarItem(
             icon: Icon(
               Icons.home,
-              color: Colors.red,
+              color: Colors.deepPurple,
               size: 30,
             ),
             label: "Home",
@@ -38,7 +48,7 @@ class _HomePageState extends ConsumerState<HomePage> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.favorite_outline,
-              color: Colors.red,
+              color: Colors.deepPurple,
               size: 30,
             ),
             label: "Favorite",
@@ -46,7 +56,7 @@ class _HomePageState extends ConsumerState<HomePage> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.shopping_bag_outlined,
-              color: Colors.red,
+              color: Colors.deepPurple,
               size: 30,
             ),
             label: "Cart",
@@ -54,7 +64,7 @@ class _HomePageState extends ConsumerState<HomePage> {
           BottomNavigationBarItem(
             icon: Icon(
               Icons.person,
-              color: Colors.red,
+              color: Colors.deepPurple,
               size: 30,
             ),
             label: "Profile",
