@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pharmacy/constants/reusable_text.dart';
 import 'package:pharmacy/controllers/category_controller.dart';
+import 'package:pharmacy/pages/product_by_category_page.dart';
 import 'package:pharmacy/utils/loading_page.dart';
 
 class HomeCategoryWidget extends ConsumerWidget {
@@ -23,23 +24,35 @@ class HomeCategoryWidget extends ConsumerWidget {
             final fakeData = data[index];
             return Padding(
               padding: const EdgeInsets.all(8),
-              child: Column(
-                children: [
-                  CircleAvatar(
-                    child: Image.asset(
-                      fakeData.image.toString(),
-                      fit: BoxFit.cover,
-                      height: 120,
-                      width: 120,
+              child: GestureDetector(
+                onTap: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => ProductByCategoryPage(
+                        categoryName: data[index].name.toString(),
+                      ),
                     ),
-                  ),
-                  ReusableText(
-                    text: fakeData.name.toString(),
-                    fontSize: 15,
-                    fontWeight: FontWeight.w400,
-                    color: Colors.black,
-                  ),
-                ],
+                  );
+                },
+                child: Column(
+                  children: [
+                    CircleAvatar(
+                      child: Image.asset(
+                        fakeData.image.toString(),
+                        fit: BoxFit.cover,
+                        height: 120,
+                        width: 120,
+                      ),
+                    ),
+                    ReusableText(
+                      text: fakeData.name.toString(),
+                      fontSize: 15,
+                      fontWeight: FontWeight.w400,
+                      color: Colors.black,
+                    ),
+                  ],
+                ),
               ),
             );
           },

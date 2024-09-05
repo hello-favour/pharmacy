@@ -9,18 +9,17 @@ class MainPage extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final screenHeight = MediaQuery.of(context).size.height;
-    return Scaffold(
+    return const Scaffold(
       body: SingleChildScrollView(
         padding: EdgeInsets.all(20),
         child: Column(
           children: [
-            const SizedBox(height: 50),
+             SizedBox(height: 50),
             Card(
               elevation: 1,
               child: SizedBox(
                 height: 60,
-                child: const TextField(
+                child:  TextField(
                   decoration: InputDecoration(
                     border: InputBorder.none,
                     prefixIcon: Icon(
@@ -43,8 +42,8 @@ class MainPage extends ConsumerWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 16),
-            const HomeCategoryWidget(),
+             SizedBox(height: 16),
+             HomeCategoryWidget(),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [

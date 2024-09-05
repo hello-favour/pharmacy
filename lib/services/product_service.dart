@@ -23,7 +23,7 @@ class ProductService {
     return products.snapshots().map((event) {
       List<ProductModel> productslist = [];
       for (var doc in event.docs) {
-        products.add(ProductModel.fromMap(doc.data() as Map<String, dynamic>));
+        products.add(ProductModel.fromJson(doc.data() as Map<String, dynamic>));
       }
       return productslist;
     });
@@ -31,6 +31,19 @@ class ProductService {
 
   Stream<ProductModel> getProductById(String productId) {
     return products.doc(productId).snapshots().map(
-        (event) => ProductModel.fromMap(event.data() as Map<String, dynamic>));
+        (event) => ProductModel.fromJson(event.data() as Map<String, dynamic>));
+  }
+
+  Stream<List<ProductModel>> getProductByCategory(String categoryname) {
+    return products
+        .where('categoryname', isEqualTo: categoryname)
+        .snapshots()
+        .map((event) {
+      List<ProductModel> products = [];
+      for (var doc in event.docs) {
+        products.add(ProductModel.fromJson(doc.data() as Map<String, dynamic>));
+      }
+      return products;
+    });
   }
 }

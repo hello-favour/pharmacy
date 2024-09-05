@@ -56,54 +56,19 @@ class ProductModel {
     };
   }
 
-  factory ProductModel.fromMap(Map<String, dynamic> map) {
+  factory ProductModel.fromJson(Map<String, dynamic> json) {
     return ProductModel(
-      productID: map['productID'] as String,
-      name: map['name'] as String,
-      image: map['image'] as String,
-      price: map['price'] as double,
-      oldPrice: map['oldPrice'] as double,
+      productID: json['productID'] as String,
+      name: json['name'] as String,
+      image: json['image'] as String,
+      price: json['price'] as double,
+      oldPrice: json['oldPrice'] as double,
       isAvailable:
-          map['isAvailable'] != null ? map['isAvailable'] as bool : null,
-      description: map['description'] as String,
+          json['isAvailable'] != null ? json['isAvailable'] as bool : null,
+      description: json['description'] as String,
       categoryName:
-          map['categoryName'] != null ? map['categoryName'] as String : null,
+          json['categoryName'] != null ? json['categoryName'] as String : null,
     );
   }
 
-  String toJson() => json.encode(toMap());
-
-  factory ProductModel.fromJson(String source) =>
-      ProductModel.fromMap(json.decode(source) as Map<String, dynamic>);
-
-  @override
-  String toString() {
-    return 'ProductModel(productID: $productID, name: $name, image: $image, price: $price, oldPrice: $oldPrice, isAvailable: $isAvailable, description: $description, categoryName: $categoryName)';
-  }
-
-  @override
-  bool operator ==(covariant ProductModel other) {
-    if (identical(this, other)) return true;
-
-    return other.productID == productID &&
-        other.name == name &&
-        other.image == image &&
-        other.price == price &&
-        other.oldPrice == oldPrice &&
-        other.isAvailable == isAvailable &&
-        other.description == description &&
-        other.categoryName == categoryName;
-  }
-
-  @override
-  int get hashCode {
-    return productID.hashCode ^
-        name.hashCode ^
-        image.hashCode ^
-        price.hashCode ^
-        oldPrice.hashCode ^
-        isAvailable.hashCode ^
-        description.hashCode ^
-        categoryName.hashCode;
-  }
 }

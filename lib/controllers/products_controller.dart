@@ -2,6 +2,22 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:pharmacy/models/product_model.dart';
 import 'package:pharmacy/services/product_service.dart';
 
+final productsControllerProvider =
+    StateNotifierProvider<ProductController, bool>((ref) {
+  final productService = ref.watch(productServiceProvider);
+  return ProductController(productService: productService, ref: ref);
+});
+
+final getProductProvider = StreamProvider(
+    (ref) => ref.watch(productsControllerProvider.notifier).getProducts());
+
+final getProductByCategoryProvider =
+    StreamProvider.family((ref, String categoryName) {
+  return ref
+      .watch(productsControllerProvider.notifier)
+      .getProductByCategoryName(categoryName);
+});
+
 class ProductController extends StateNotifier<bool> {
   final ProductService _productService;
   final Ref _ref;
@@ -17,5 +33,9 @@ class ProductController extends StateNotifier<bool> {
 
   Stream<ProductModel> getProductById(String productId) {
     return _productService.getProductById(productId);
+  }
+
+  Stream<List<ProductModel>> getProductByCategoryName(String categoryName) {
+    return _productService.getProductByCategory(categoryName);
   }
 }
