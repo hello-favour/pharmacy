@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pharmacy/components/related_products_widget.dart';
 import 'package:pharmacy/constants/reusable_text.dart';
 import 'package:pharmacy/models/product_model.dart';
 
@@ -114,6 +115,30 @@ class ProductDetailsPage extends StatelessWidget {
                   child: const ReusableText(text: "Add To Cart"),
                 ),
               ),
+            ),
+            const Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  ReusableText(
+                    text: "Similar Products",
+                    color: Colors.blue,
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500,
+                  ),
+                  ReusableText(
+                    text: "See All",
+                    color: Colors.black,
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(height: 16),
+            RelatedProductWidget(
+              categoryName: product.categoryName.toString(),
             ),
           ],
         ),

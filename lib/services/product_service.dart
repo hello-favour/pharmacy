@@ -46,4 +46,17 @@ class ProductService {
       return products;
     });
   }
+
+  Stream<List<ProductModel>> getRelatedProducts(String categoryname) {
+    return products
+        .where('categoryname', isEqualTo: categoryname)
+        .snapshots()
+        .map((event) {
+      List<ProductModel> products = [];
+      for (var doc in event.docs) {
+        products.add(ProductModel.fromJson(doc.data() as Map<String, dynamic>));
+      }
+      return products;
+    });
+  }
 }
