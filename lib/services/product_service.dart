@@ -59,4 +59,23 @@ class ProductService {
       return products;
     });
   }
+
+  Stream<List<ProductModel>> searchProducts(String search) {
+    return products
+        .orderBy("name")
+        .startAt([search])
+        .endAt([search + '\uff8ff'])
+        .limit(10)
+        .snapshots()
+        .map(
+          (event) {
+            List<ProductModel> productsList = [];
+            for (var doc in event.docs) {
+              products.add(
+                  ProductModel.fromJson(doc.data() as Map<String, dynamic>));
+            }
+            return productsList;
+          },
+        );
+  }
 }
