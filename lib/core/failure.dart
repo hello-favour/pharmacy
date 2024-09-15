@@ -1,7 +1,4 @@
 class Failure {
-  final String errorMessage;
-
-  Failure({
-    required this.errorMessage,
-  });
+  final String message;
+  Failure({required this.message});
 }
